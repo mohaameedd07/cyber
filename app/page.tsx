@@ -1,9 +1,8 @@
 "use client";
 
-import { ShieldAlert, Mail, AlertTriangle } from "lucide-react";
+import { ShieldAlert, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
-// Variante réutilisable : fade-in avec délai personnalisable
 const fadeIn = (delay = 0) => ({
   initial: { opacity: 0 },
   animate: { opacity: 1 },
@@ -12,29 +11,29 @@ const fadeIn = (delay = 0) => ({
 
 export default function Page() {
   return (
-    <div className="h-screen flex flex-col overflow-hidden" style={{ backgroundColor: "#ffffff" }}>
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: "#ffffff" }}>
 
       {/* Top red bar */}
       <motion.div
         {...fadeIn(0)}
-        className="flex-shrink-0 py-2 px-6"
+        className="flex-shrink-0 py-2 px-4"
         style={{ backgroundColor: "#c8102e" }}
       >
         <div className="mx-auto max-w-7xl flex items-center justify-center gap-2">
           <ShieldAlert className="h-4 w-4 flex-shrink-0" style={{ color: "#ffffff" }} />
-          <p className="text-xs font-medium" style={{ color: "#ffffff" }}>
+          <p className="text-xs font-medium text-center" style={{ color: "#ffffff" }}>
             Campagne interne de sensibilisation — Information confidentielle
           </p>
         </div>
       </motion.div>
 
-      {/* Main content area */}
-      <div className="flex-1 flex min-h-0">
+      {/* Main content — colonne sur mobile, ligne sur desktop */}
+      <div className="flex-1 flex flex-col lg:flex-row">
 
         {/* LEFT PANEL */}
-        <div className="flex-1 flex flex-col px-8 py-6 lg:px-12 lg:py-8 min-h-0 relative">
+        <div className="flex-1 flex flex-col px-5 py-6 sm:px-8 sm:py-6 lg:px-12 lg:py-8 relative">
 
-          {/* Background refinery image — fade-in en premier */}
+          {/* Background image */}
           <motion.div
             {...fadeIn(0.1)}
             className="absolute inset-0 pointer-events-none"
@@ -47,15 +46,13 @@ export default function Page() {
             }}
           />
 
-
-
           {/* Header : logo + DSI */}
           <motion.div
             {...fadeIn(0.3)}
-            className="relative z-10 flex items-center justify-between flex-shrink-0 mb-5"
+            className="relative z-10 flex items-center justify-between flex-shrink-0 mb-5 flex-wrap gap-2"
           >
-            <div className="flex items-center gap-4">
-              <img src="/images/logo.png" alt="Logo SAR" className="h-14 w-auto" />
+            <div className="flex items-center gap-3">
+              <img src="/images/logo.png" alt="Logo SAR" className="h-10 sm:h-14 w-auto" />
               <div>
                 <p className="text-[10px] font-bold tracking-widest uppercase" style={{ color: "#c8102e" }}>
                   Societe Africaine
@@ -65,7 +62,7 @@ export default function Page() {
                 </p>
               </div>
             </div>
-            <span className="text-[10px] font-medium uppercase tracking-wider" style={{ color: "#9a9a9a" }}>
+            <span className="text-[9px] sm:text-[10px] font-medium uppercase tracking-wider" style={{ color: "#9a9a9a" }}>
               Direction des Systemes d&apos;Information
             </span>
           </motion.div>
@@ -73,14 +70,14 @@ export default function Page() {
           {/* Divider */}
           <motion.div
             {...fadeIn(0.45)}
-            className="relative z-10 h-px flex-shrink-0 mb-5"
+            className="relative z-10 h-px flex-shrink-0 mb-4"
             style={{ backgroundColor: "#e5e5e5" }}
           />
 
           {/* Title */}
           <motion.h1
             {...fadeIn(0.55)}
-            className="relative z-10 text-3xl lg:text-4xl font-bold mb-2 flex-shrink-0 leading-tight"
+            className="relative z-10 text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 flex-shrink-0 leading-tight"
             style={{ color: "#1a1a1a" }}
           >
             Sensibilisation à la{" "}
@@ -90,7 +87,7 @@ export default function Page() {
           {/* Message */}
           <motion.p
             {...fadeIn(0.65)}
-            className="relative z-10 text-xl font-bold leading-relaxed mb-2 flex-shrink-0"
+            className="relative z-10 text-base sm:text-lg lg:text-xl font-bold leading-relaxed mb-4 flex-shrink-0"
             style={{ color: "#1a1a1a" }}
           >
             Vous venez de cliquer sur un lien dans le cadre d&apos;une campagne de{" "}
@@ -100,7 +97,7 @@ export default function Page() {
           {/* Confidential notice */}
           <motion.div
             {...fadeIn(0.75)}
-            className="relative z-10 flex items-center gap-4 rounded-xl px-5 py-4 mb-5 flex-shrink-0"
+            className="relative z-10 flex items-center gap-3 sm:gap-4 rounded-xl px-4 sm:px-5 py-4 mb-5 flex-shrink-0"
             style={{
               backgroundColor: "#fff0f0",
               border: "3px solid #c8102e",
@@ -110,22 +107,50 @@ export default function Page() {
             <img
               src="/images/alerte.png"
               alt="Confidentiel"
-              style={{ width: 160, height: 160, flexShrink: 0 }}
+              className="w-16 h-16 sm:w-24 sm:h-24 lg:w-40 lg:h-40"
+              style={{ flexShrink: 0 }}
             />
             <div>
               <p
-                className="text-2xl font-black uppercase tracking-widest mb-3"
+                className="text-base sm:text-xl lg:text-2xl font-black uppercase tracking-widest mb-2"
                 style={{ color: "#c8102e" }}
               >
                 SOYEZ DISCRETS ! ! !
               </p>
-              <p className="text-xl font-semibold leading-snug" style={{ color: "#1a1a1a" }}>
+              <p className="text-sm sm:text-base lg:text-xl font-semibold leading-snug" style={{ color: "#1a1a1a" }}>
                 Pour le bon déroulement de la campagne,{" "}
                 <span style={{ color: "#c8102e" }}>
                   veuillez ne pas diffuser cette information.
                 </span>
               </p>
             </div>
+          </motion.div>
+
+          {/* Video sur mobile uniquement */}
+          <motion.div
+            {...fadeIn(0.8)}
+            className="relative z-10 flex-shrink-0 mb-5 lg:hidden rounded-xl overflow-hidden"
+            style={{ backgroundColor: "#111111" }}
+          >
+            <div
+              className="flex items-center gap-2 px-4 py-2"
+              style={{ backgroundColor: "#c8102e" }}
+            >
+              <ShieldAlert className="h-4 w-4 flex-shrink-0" style={{ color: "#ffffff" }} />
+              <p className="text-xs font-semibold tracking-wide uppercase" style={{ color: "#ffffff" }}>
+                Vidéo de sensibilisation au phishing
+              </p>
+            </div>
+            <video
+              className="w-full"
+              controls
+              autoPlay
+              muted
+              playsInline
+              src="/videos/sensibilisation.mp4"
+            >
+              <track kind="captions" />
+            </video>
           </motion.div>
 
           {/* Spacer */}
@@ -136,7 +161,7 @@ export default function Page() {
             {...fadeIn(0.9)}
             className="relative z-10 flex items-center gap-2 mt-4 flex-shrink-0"
           >
-            <Mail className="h-3.5 w-3.5" style={{ color: "#c8102e" }} />
+            <Mail className="h-3.5 w-3.5 flex-shrink-0" style={{ color: "#c8102e" }} />
             <span className="text-xs" style={{ color: "#6b6b6b" }}>
               Pour toute question, veuillez contacter{" "}
               <a
@@ -151,13 +176,12 @@ export default function Page() {
 
         </div>
 
-        {/* RIGHT PANEL - Video */}
+        {/* RIGHT PANEL - Video (desktop uniquement) */}
         <motion.div
           {...fadeIn(0.4)}
           className="hidden lg:flex w-[48%] flex-shrink-0 flex-col"
           style={{ backgroundColor: "#111111" }}
         >
-          {/* Video label bar */}
           <div
             className="flex-shrink-0 flex items-center gap-2 px-6 py-3"
             style={{ backgroundColor: "#c8102e" }}
@@ -167,8 +191,6 @@ export default function Page() {
               Vidéo de sensibilisation au phishing
             </p>
           </div>
-
-          {/* Video area */}
           <div className="flex-1 relative min-h-0">
             <video
               className="absolute inset-0 w-full h-full object-contain"
